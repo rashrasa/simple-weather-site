@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Location Weather</title><!--Make title display current location-->
+    <link rel="stylesheet" href="landing_page.css">
+</head>
+<body>
+    <h1>Location</h1>
+    <h3>Current Time: <time id="current"></time></h3>
+    <p class="desc">Brief weather description.</p>
+    <div class="w">
+        <button id="the_button" 
+        onclick="document.getElementById('current').innerHTML=Date()">
+                    Click to update time
+        </button>
+        <img class="goated" src="https://cdn.pixabay.com/photo/2023/01/18/10/32/ouch-7726461_640.jpg">
+    
+    </div>
+    
+    <table>
+        <caption>Last updated: </caption>
+        <thead>
+            <tr>
+                <th class="tTitle" scope="col">Today</th>
+                <th class="tTitle" scope="col">Tomorrow</th>
+                <th class="tTitle" scope="col">Friday, Month Day</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Sunny</th>
+                <td>Cloudy</td>
+                <td>Rainy</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+<footer>
+    <p>Powered by # API.</p>
+</footer>
+</html>

@@ -1,0 +1,55 @@
+h1{
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: lightsalmon;
+}
+h3{
+    font-family: 'Courier New', Courier, monospace;
+    color: grey;
+    block-size: 2px;
+}
+p{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.desc{
+    text-shadow: 50px;
+    font-size: 12px;
+}
+table{
+    caption-side: bottom;
+}
+.tTitle{
+    font: bold;
+    font-size: 14px;
+    color: orangered;
+}
+.goated{
+    width: 300px;
+    height: 300px;
+    position: relative;
+    left: 10%;
+
+}
+button{
+    height: 300px;
+    width: 300px;
+    color: aqua;
+    font-size: 50px;
+    background-color: blue;
+    position: relative;
+    left: 10%;
+}
+button:hover{
+    background-color: red;
+}
+button:active{
+    background-color: yellow;
+}
+button:focus{
+    position: absolute;
+    top: 40%;
+}
+caption{
+    font-size: small;
+    font-family: sans-serif;
+}
