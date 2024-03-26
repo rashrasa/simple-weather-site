@@ -30,6 +30,10 @@ table{
     left: 10%;
 
 }
+div{
+    justify-self: center;
+    justify-content: center;
+}
 button{
     height: 300px;
     width: 300px;
@@ -44,10 +48,6 @@ button:hover{
 }
 button:active{
     background-color: yellow;
-}
-button:focus{
-    position: absolute;
-    top: 40%;
 }
 caption{
     font-size: small;

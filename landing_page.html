@@ -2,41 +2,30 @@
 
 <html>
 <head>
-    <title>Location Weather</title><!--Make title display current location-->
+    <title id="tabName">Loading...</title><!--Make title display current location-->
+    <link rel="icon" href="images/favicon.ico">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="landing_page.css">
+    <script src="landing_page.js" type="text/javascript"></script>
 </head>
-<body>
-    <h1>Location</h1>
-    <h3>Current Time: <time id="current"></time></h3>
-    <p class="desc">Brief weather description.</p>
-    <div class="w">
-        <button id="the_button" 
-        onclick="document.getElementById('current').innerHTML=Date()">
-                    Click to update time
-        </button>
-        <img class="goated" src="https://cdn.pixabay.com/photo/2023/01/18/10/32/ouch-7726461_640.jpg">
-    
+<body onload="loadAll()">
+    <div class="header">
+        <h1 id="title">Location</h1>
+        <h3>Current Time: <time id="current"></time></h3>
+        <p class="desc">Brief weather description.</p>
     </div>
-    
-    <table>
-        <caption>Last updated: </caption>
-        <thead>
-            <tr>
-                <th class="tTitle" scope="col">Today</th>
-                <th class="tTitle" scope="col">Tomorrow</th>
-                <th class="tTitle" scope="col">Friday, Month Day</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Sunny</th>
-                <td>Cloudy</td>
-                <td>Rainy</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="weatherData">
+        <button id="the_button" 
+        onclick="loadDate()">
+                    
+        </button>
+    </div>
 </body>
 <footer>
+    <p id="coords"></p>
     <p>Powered by # API.</p>
+    <p>World map information provided by 
+        <a target="_blank" href="https://simplemaps.com/data/world-cities">SimpleMaps.com</a> under the 
+        <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons 4.0 BY License</a>.</p>
 </footer>
 </html>
