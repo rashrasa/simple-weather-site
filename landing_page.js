@@ -38,6 +38,7 @@ function loadAll(){
     //requestLocationPermissions();
     loadLocation();
     loadDate();
+    loadData();
 }
 
 //allows one update every "interval" seconds
@@ -51,6 +52,9 @@ function loadDate(){
     else{
         document.getElementById('current').innerHTML=Date(lastUpdate).substring(0,21);
     }
+    
+}
+function loadData(){
     for(i = 0; i<hourData.length;i++){
         var date = new Date(Date.now()+(i)*1000*60*60);
         var hour = date.getHours();
