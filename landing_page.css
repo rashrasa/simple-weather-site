@@ -10,36 +10,81 @@ h3{
 }
 
 .hourlyWeather{
-    margin: left;
+    margin-bottom: 5px;
     height: 300px;
     width: 800px;
-    border: 5px ridge;
+    border: 5px ridge orangered;
     padding: 0px;
 
     
 }
 .hour{
+    --hour-width: calc((800px - 10px)/5);
     margin:auto;
     height: 100%;
-    width: calc((800px - 10px)/5);
+    width: var(--hour-width);
     border: 1px solid black;
     float: left;
     background-color: orange;
 }
 .hourName{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 5px;
 }
 .hourDesc{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 5px;
 }
 .hourIcon{
-    
+    width: 64px;
+    height: 64px;
+    margin-left: calc(var(--hour-width)/2 - 32px);
 }
 .hourHigh{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 5px;
 }
-.hourLow{
+.hourFeels{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 5px;
+}
+
+.dailyWeather{
+    margin-bottom: 2px;
+    height: 300px;
+    width: 800px;
+    border: 5px ridge orangered;
+    padding: 0px;
+}
+.day{
+    --day-width: calc((800px - 10px) / 3);
+    margin:auto;
+    height: 100%;
+    width: var(--day-width);
+    border: 1px solid black;
+    float: left;
+    background-color: orange;
+}
+.dayName{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 5px;
+}
+.dayDesc{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 5px;
+}
+.dayIcon{
+    width: 64px;
+    height: 64px;
+    margin-left: calc(var(--day-width)/2 - 32px);
+}
+.dayHigh{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 5px;
+}
+.dayLow{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 5px;
 }
 
 .footer{

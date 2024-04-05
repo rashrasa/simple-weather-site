@@ -6,7 +6,21 @@ var lastUpdate = Date.now();
 var latitude = 40.7128; //default (NYC)
 var longitude = -74.0060; //default (NYC)
 var cityName = "New York City, NY";
-var weatherData = ["sunny","sunny","sunny","sunny","sunny"];
+var hourData = {
+    length:5,
+    hour0:{desc:"partlyCloudy", high:2, feels:-99},
+    hour1:{desc:"sunny", high:19, feels:-29},
+    hour2:{desc:"snowing", high:19, feels:-39},
+    hour3:{desc:"overcast", high:71, feels:-49},
+    hour4:{desc:"thunderstorm", high:500, feels:-59}
+};
+
+var dayData = {
+    length:3,
+    day0:{desc:"sunny", high:9, low:-9},
+    day1:{desc:"raining", high:12, low:-900},
+    day2:{desc:"thunderstorm", high:2, low:-5}
+}
 
 const weatherIDDict={
     sunny:        {name:"Sunny",         imageRef:"images/sunny.png"},
@@ -24,7 +38,6 @@ function loadAll(){
     //requestLocationPermissions();
     loadLocation();
     loadDate();
-    document.getElementById("test").innerHTML=weatherIDDict[weatherData[0]].name;
 }
 
 //allows one update every "interval" seconds
@@ -38,21 +51,35 @@ function loadDate(){
     else{
         document.getElementById('current').innerHTML=Date(lastUpdate).substring(0,21);
     }
-    for(i = 0; i<5;i++){
-        var hour = new Date(Date.now()+(i)*1000*60*60).getHours();
+    for(i = 0; i<hourData.length;i++){
+        var date = new Date(Date.now()+(i)*1000*60*60);
+        var hour = date.getHours();
         var isAM = hour<12? "AM":"PM";
         var displayHour = hour<12?hour:hour-12;
         if(hour==0)displayHour=12;
+        var data = hourData["hour"+i];
+        var condObj = (hour<sunsetTime && hour>sunriseTime)?weatherIDDict[data.desc]:weatherIDDict["night"];
 
-        var hourObj = (hour<sunsetTime && hour>sunriseTime)?weatherIDDict[weatherData[i]]:weatherIDDict["night"]
-
-        document.getElementById("name0"+i).innerHTML = displayHour +" "+ isAM;
-        document.getElementById("desc0"+i).innerHTML = hourObj.name;
-        document.getElementById("icon0"+i).src = hourObj.imageRef;
-        document.getElementById("high0"+i).innerHTML = 99 +" \u00B0C";
-        document.getElementById("low0"+i).innerHTML = -99 +" \u00B0C";
+        document.getElementById("hourName0"+i).innerHTML = displayHour +" "+ isAM;
+        document.getElementById("hourDesc0"+i).innerHTML = condObj.name;
+        document.getElementById("hourIcon0"+i).src = condObj.imageRef;
+        document.getElementById("hourHigh0"+i).innerHTML = data.high +" \u00B0C";
+        document.getElementById("hourFeels0"+i).innerHTML = data.feels +" \u00B0C";
     }
-    
+    for(i = 0; i<dayData.length;i++){
+        var date = new Date(Date.now()+(i)*1000*60*60*24);
+        var day = date.getDate();
+        var month = date.getMonth()+1;
+        var displayDay = day+"/"+month;
+        var data = dayData["day"+i];
+        var condObj = weatherIDDict[data.desc];
+
+        document.getElementById("dayName0"+i).innerHTML = displayDay;
+        document.getElementById("dayDesc0"+i).innerHTML = condObj.name;
+        document.getElementById("dayIcon0"+i).src = condObj.imageRef;
+        document.getElementById("dayHigh0"+i).innerHTML = data.high +" \u00B0C";
+        document.getElementById("dayLow0"+i).innerHTML = data.low +" \u00B0C";
+    }
 }
 
 function requestLocationPermissions(){
@@ -86,40 +113,4 @@ function loadLocation(pos){
 //hard limits, etc.
 function loadWeatherData(fileLocation){
     //weatherData = new Weather(fileLocation);
-}
-
-class Weather{
-    days=[];
-    constructor(dataLocation){
-        //parse JSON object from datalocation
-        data=[];
-        for(let i=0;i<data.length;i++){
-            this.days.push(new WeatherDay(data[i]));
-        }
-    }
-}
-
-class WeatherDay{
-    hourData=[];
-    constructor(dayData){
-        this.dayData = dayData;
-        for(let i=0; i<this.dayData.length; i++){
-            this.hourData.push(new WeatherHour(this.dayData[i]));
-        }
-    }
-}
-
-//holds the actual weather data
-class WeatherHour{ 
-    constructor(desk){ 
-        this.weatherConditionID= "sunny";
-        this.currentTemp= -99;
-        this.highTemp= -99;
-        this.lowTemp= -99;
-        this._desc=desk;
-        //desc= weatherIDDict.get(weatherConditionID).displayName;
-    }
-    desc(){
-        return this._desc;
-    }
 }
