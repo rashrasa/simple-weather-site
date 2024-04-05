@@ -1,55 +1,52 @@
 h1{
     text-align: center;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: lightsalmon;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: lightsalmon;   
 }
 h3{
-    font-family: 'Courier New', Courier, monospace;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: grey;
     block-size: 2px;
 }
-p{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-.desc{
-    text-shadow: 50px;
-    font-size: 12px;
-}
-table{
-    caption-side: bottom;
-}
-.tTitle{
-    font: bold;
-    font-size: 14px;
-    color: orangered;
-}
-.goated{
-    width: 300px;
-    height: 300px;
-    position: relative;
-    left: 10%;
 
-}
-div{
-    justify-self: center;
-    justify-content: center;
-}
-button{
+.hourlyWeather{
+    margin: left;
     height: 300px;
-    width: 300px;
-    color: aqua;
-    font-size: 50px;
-    background-color: blue;
-    position: relative;
-    left: 10%;
+    width: 800px;
+    border: 5px ridge;
+    padding: 0px;
+
+    
 }
-button:hover{
-    background-color: red;
+.hour{
+    margin:auto;
+    height: 100%;
+    width: calc((800px - 10px)/5);
+    border: 1px solid black;
+    float: left;
+    background-color: orange;
 }
-button:active{
-    background-color: yellow;
+.hourName{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-caption{
-    font-size: small;
-    font-family: sans-serif;
+.hourDesc{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.hourIcon{
+    
+}
+.hourHigh{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.hourLow{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.footer{
+    p{
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+    a{
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
 }
