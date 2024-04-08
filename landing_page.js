@@ -21,6 +21,16 @@ var dayData = {
     day1:{desc:"raining", high:12, low:-900},
     day2:{desc:"thunderstorm", high:2, low:-5}
 }
+var cityList = [{country:"not working"}]
+fetch("https://github.com/rashrasa/simple-weather-site/blob/1dc13dbfed9544ed83719bd402823cc305586f22/data/worldcities.json")
+    .then(response => response.json)
+    .then(info => test(info), test(["notWorking"]));
+
+function test(info){
+    cityList = info;
+}
+
+//var cityList = [["city0",0,0], ["city1",1,50], ["city2",40,-75], ["city3",40,-74]]
 
 const weatherIDDict={
     sunny:        {name:"Sunny",         imageRef:"images/sunny.png"},
@@ -32,9 +42,9 @@ const weatherIDDict={
     night:        {name:"Night",         imageRef:"images/night.png"}
 }
 
-
 //this function is executed on page load
 function loadAll(){
+    document.getElementById('title').innerHTML = cityList;
     //requestLocationPermissions();
     loadLocation();
     loadDate();
@@ -106,9 +116,11 @@ function loadLocation(pos){
     }
     
     document.getElementById("coords").innerHTML=latitude+" "+longitude;
-    var cityFields = document.getElementsByClassName("cityNameField")
+    idx = closestIndex(cityList, "lat", "lng", latitude, longitude)
+    cityName = cityList[idx]["city_ascii"] + ", " + cityList[idx]["country"]
+    var cityFields = document.getElementsByClassName("cityNameField");
     for(i=0; i<cityFields.length;i++){
-        cityFields.item(i).innerHTML = cityName
+        cityFields.item(i).innerHTML = cityName;
     }
     
 }
@@ -117,4 +129,31 @@ function loadLocation(pos){
 //hard limits, etc.
 function loadWeatherData(fileLocation){
     //weatherData = new Weather(fileLocation);
+}
+
+function setHour(index, descID, high, feels){
+    hourData["hour"+index] = {desc:descID, high:high, feels:feels};
+    loadData();
+}
+function setDay(index, descID, high, low){
+    dayData["day"+index] = {desc:descID, high:high, low:low};
+    loadData();
+}
+
+//Returns the index of dataList entry closest to (v0,v1)
+//O(n) and used on a large list, improve if possible
+function closestIndex(dataList, elmnt0, elmnt1, v0, v1){
+    var index = -1;
+    var minDist = Infinity
+    for(i=0; i<dataList.length; i++){
+        dist = getDistance(v0,v1,dataList[i][elmnt0],dataList[i][elmnt1]);
+        if(dist<minDist){
+            minDist=dist;
+            index=i;
+        }
+    }
+    return index;
+}
+function getDistance(x0,y0,x1,y1){
+    return Math.sqrt(Math.pow(x1-x0,2)+Math.pow(y1-y0,2));
 }
