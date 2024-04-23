@@ -2,6 +2,9 @@ const intervalSeconds = 5;
 const sunsetTime = 20
 const sunriseTime = 7
 
+var hostServer = "http://127.0.0.1:8080"
+var loadCondition = 0;
+
 var lastUpdate = Date.now();
 var latitude = 40.7128; //default (NYC)
 var longitude = -74.0060; //default (NYC)
@@ -21,16 +24,7 @@ var dayData = {
     day1:{desc:"raining", high:12, low:-900},
     day2:{desc:"thunderstorm", high:2, low:-5}
 }
-var cityList = [{country:"not working"}]
-fetch("https://github.com/rashrasa/simple-weather-site/blob/1dc13dbfed9544ed83719bd402823cc305586f22/data/worldcities.json")
-    .then(response => response.json)
-    .then(info => test(info), test(["notWorking"]));
-
-function test(info){
-    cityList = info;
-}
-
-//var cityList = [["city0",0,0], ["city1",1,50], ["city2",40,-75], ["city3",40,-74]]
+var cityList = [];
 
 const weatherIDDict={
     sunny:        {name:"Sunny",         imageRef:"images/sunny.png"},
@@ -42,13 +36,61 @@ const weatherIDDict={
     night:        {name:"Night",         imageRef:"images/night.png"}
 }
 
-//this function is executed on page load
+//onLoad
+function loadSite(){
+    requestLocationPermissions();
+    getSavedData();
+}
+
+//request data from host
+function getSavedData(){
+    switch(loadCondition){
+        case 0:
+            const cityDataRequest = new XMLHttpRequest();
+            cityDataRequest.addEventListener("load", saveCityData);
+            cityDataRequest.open("GET", hostServer+"/data/worldcities.json");
+            cityDataRequest.send();
+            
+            break;
+        case 1:
+            const weatherDataRequest = new XMLHttpRequest();
+            weatherDataRequest.addEventListener("load", saveWeatherData);
+            weatherDataRequest.open("GET", hostServer+"/data/weather_data.json");
+            weatherDataRequest.send();
+            break;
+        case 2:
+            loadAll();
+            break;
+    }
+    
+
+    
+    
+}
+
+function saveCityData(){
+    cityList = JSON.parse(this.responseText);
+
+    loadCondition++;
+    getSavedData();
+}
+
+function saveWeatherData(){
+    var response = JSON.parse(this.responseText);
+
+    dayData = response["dayData"];
+    hourData = response["hourData"];
+
+    loadCondition++;
+    getSavedData();
+}
+
+//this function is executed after data fetch
 function loadAll(){
-    document.getElementById('title').innerHTML = cityList;
-    //requestLocationPermissions();
     loadLocation();
     loadDate();
     loadData();
+    document.getElementById('title').innerHTML = cityList.keys["country"];
 }
 
 //allows one update every "interval" seconds
@@ -70,7 +112,7 @@ function loadData(){
         var hour = date.getHours();
         var isAM = hour<12? "AM":"PM";
         var displayHour = hour<12?hour:hour-12;
-        if(hour==0)displayHour=12;
+        if(hour==0||hour==12)displayHour=12;
         var data = hourData["hour"+i];
         var condObj = (hour<sunsetTime && hour>sunriseTime)?weatherIDDict[data.desc]:weatherIDDict["night"];
 
@@ -125,12 +167,6 @@ function loadLocation(pos){
     
 }
 
-//file will contain information on when to fetch weather data from API, how often, last fetch time, results of last fetch,
-//hard limits, etc.
-function loadWeatherData(fileLocation){
-    //weatherData = new Weather(fileLocation);
-}
-
 function setHour(index, descID, high, feels){
     hourData["hour"+index] = {desc:descID, high:high, feels:feels};
     loadData();
@@ -141,6 +177,8 @@ function setDay(index, descID, high, low){
 }
 
 //Returns the index of dataList entry closest to (v0,v1)
+//based on properties elmnt0 and elmnt1 (json key in dataList)
+
 //O(n) and used on a large list, improve if possible
 function closestIndex(dataList, elmnt0, elmnt1, v0, v1){
     var index = -1;

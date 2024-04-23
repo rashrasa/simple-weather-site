@@ -7,8 +7,13 @@
     <link rel="stylesheet" href="landing_page.css">
     <script type="text/javascript" src="data/worldcities.json"></script>
     <script type="text/javascript" src="landing_page.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
 </head>
-<body onload="loadAll()">
+<body onload="loadSite()">
     <div class="header">
         <h1 class="cityNameField" id="title">Location</h1>
         <h3><time id="current"></time></h3>
@@ -77,6 +82,7 @@
     </div>
     <div class="footer">
         <p id="coords"><p>(NYC Coordinates)</p></p>
+        Powered by <a href="https://www.weatherapi.com/" title="Free Weather API">WeatherAPI.com</a>
         <p>World map information provided by 
             <a target="_blank" href="https://simplemaps.com/data/world-cities">SimpleMaps.com</a> under the 
             <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons BY 4.0 License</a>.</p>
