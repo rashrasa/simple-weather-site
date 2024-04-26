@@ -8,7 +8,19 @@ h3{
     color: grey;
     block-size: 2px;
 }
-
+.todayInfo{
+    margin: auto;
+    height: 320px;
+    width: auto;
+}
+.column{
+    width: 250px;
+    height: 300px;
+    margin: 1px;
+    background-color: rgb(220, 220, 220);
+    float: left;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 .hourlyWeather{
     margin-bottom: 5px;
     height: 300px;

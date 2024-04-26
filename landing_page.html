@@ -7,18 +7,31 @@
     <link rel="stylesheet" href="landing_page.css">
     <script type="text/javascript" src="data/worldcities.json"></script>
     <script type="text/javascript" src="landing_page.js"></script>
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-
+    <link type="image/png" sizes="16x16" rel="icon" href="/icons8-sun-tiny-color-16.png">
+    <link type="image/png" sizes="32x32" rel="icon" href="/icons8-sun-tiny-color-32.png">
+    <link type="image/png" sizes="96x96" rel="icon" href="/icons8-sun-tiny-color-96.png">
 </head>
 <body onload="loadSite()">
     <div class="header">
         <h1 class="cityNameField" id="title">Location</h1>
-        <h3><time id="current"></time></h3>
+        <h3>Last Update: <time id="current"></time></h3>
     </div>
     <div class="weatherData">
+        <div class="todayInfo">
+            <div class="column">
+                Today:<br><br>
+                Wind speed: <span id="windKPH"></span><br>
+                Wind direction: <span id="windDir"></span><br> 
+                Precipitation: <span id="precipMM"></span><br>
+                Humidity: <span id="humidity"></span><br>
+                Cloud cover: <span id="cloudPerc"></span><br>
+                Visibility: <span id="visKM"></span><br>
+                UV: <span id="uv"></span><br>
+                Sunrise: <span id="sunrise"></span><br>
+                Sunset: <span id="sunset"></span><br>
+                Moon Phase: <span id="moonPhase"></span><br>
+            </div>
+        </div>
         <div class="hourlyWeather">
             <div class="hour" id="hour00">
                 <p class="hourName" id="hourName00"></p>
@@ -81,12 +94,8 @@
         </div>
     </div>
     <div class="footer">
-        <p id="coords"><p>(NYC Coordinates)</p></p>
-        Powered by <a href="https://www.weatherapi.com/" title="Free Weather API">WeatherAPI.com</a>
-        <p>World map information provided by 
-            <a target="_blank" href="https://simplemaps.com/data/world-cities">SimpleMaps.com</a> under the 
-            <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons BY 4.0 License</a>.</p>
-            <p>Icons created by <a target="_blank" href="https://www.flaticon.com/free-icons" title="icons">Freepik - Flaticon</a></p>
+        Powered by <a href="https://www.weatherapi.com/" title="Free Weather API">WeatherAPI.com</a><br>
+        <a target="_blank" href="https://icons8.com/icon/pjPI1Fdm9CC3/summer">Sun</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
     </div>
 </body>
 </html>
