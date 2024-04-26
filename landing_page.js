@@ -1,4 +1,4 @@
-var hostServer = "http://127.0.0.1:8080"
+var hostServer = "http://127.0.0.1/8080"
 var loadCondition = 0;
 const callAPI = true;
 
@@ -9,8 +9,6 @@ var apiData = {}
 var latitude = 40.7128; //default (NYC)
 var longitude = -74.0060; //default (NYC)
 var cityName = "New York City, NY";
-var sunsetTime = 20
-var sunriseTime = 7
 
 var hourDataLength = 5;
 var dayDataLength = 3;
@@ -107,7 +105,7 @@ function loadData(){
         var isAM = hour<12? "AM":"PM";
         var displayHour = hour<12?hour:hour-12;
         if(hour==0||hour==12)displayHour=12;
-        var data = today["hour"][hour+i];
+        var data = today["hour"][hour];
         var condition = data["condition"];
 
         document.getElementById("hourName0"+i).innerHTML = displayHour +" "+ isAM;
