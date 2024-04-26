@@ -1,4 +1,4 @@
-var hostServer = "http://127.0.0.1/8080"
+var hostServer = "http://127.0.0.1:8080"
 var loadCondition = 0;
 const callAPI = false;
 
