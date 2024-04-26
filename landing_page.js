@@ -1,8 +1,8 @@
 var hostServer = "http://127.0.0.1/8080"
 var loadCondition = 0;
-const callAPI = true;
+const callAPI = false;
 
-const apiKey = "347e7e88f30c4396acd160903241504";
+const apiKey = "";
 const apiUrl = "http://api.weatherapi.com/v1";
 var apiData = {}
 
